@@ -1,2 +1,4 @@
 .idea/
-idea-test-recorder-plugin.iml
+target/
+out/
+*.iml
