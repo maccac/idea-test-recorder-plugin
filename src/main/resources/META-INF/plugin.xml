@@ -23,6 +23,7 @@
     <!-- Add your extensions here -->
     <extensions defaultExtensionNs="com.intellij">
         <testStatusListener implementation="info.maccac.recorder.TestListener"/>
+        <applicationService serviceInterface="info.maccac.recorder.client.TestResultsClient" serviceImplementation="info.maccac.recorder.client.TestResultsClientImpl" />
     </extensions>
 
 </idea-plugin>
