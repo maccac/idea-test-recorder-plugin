@@ -44,7 +44,7 @@ public class TestResultsClientImpl implements TestResultsClient {
     private HttpURLConnection postJson(String jsonBody) throws IOException {
         HttpURLConnection connection = createHttpUrlConnectionTo(DEFAULT_HOST);
         connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "text/json");
+        connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("charset", "utf-8");
         byte[] jsonAsBytes = jsonBody.getBytes(StandardCharsets.UTF_8);
         connection.setRequestProperty("Content-Length", Integer.toString(jsonAsBytes.length));
