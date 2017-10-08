@@ -6,7 +6,7 @@ import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.diagnostic.Logger;
-import info.maccac.recorder.TestResults;
+import info.maccac.recorder.model.TestResults;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -31,11 +31,11 @@ public class TestResultsClientImpl implements TestResultsClient {
             String jsonBody = gson.toJson(breakdown);
             HttpURLConnection connection = postJson(jsonBody);
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                logger.error("Failed to send results to server.");
+                logger.warn("Failed to send results to server.");
             }
         } catch (IOException e) {
             logger.warn(e);
-            Notification notification = new Notification("Test recorder", "Failed to post results", e.getMessage(), NotificationType.INFORMATION);
+            Notification notification = new Notification("Test recorder", "Failed to post results", e.getMessage(), NotificationType.WARNING);
             Notifications.Bus.notify(notification);
         }
     }

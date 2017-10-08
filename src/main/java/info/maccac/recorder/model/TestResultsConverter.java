@@ -1,16 +1,16 @@
-package info.maccac.recorder;
+package info.maccac.recorder.model;
 
 import com.intellij.execution.testframework.AbstractTestProxy;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-final class TestResultsConverter {
+public final class TestResultsConverter {
 
     private TestResultsConverter() {
     }
 
-    static TestResults breakdown(String projectName, AbstractTestProxy testProxy) {
+    public static TestResults breakdown(String projectName, AbstractTestProxy testProxy) {
         return new TestResults(projectName, new TestResult(null, testProxy.getName(), testProxy.getDuration(), getChildren(testProxy)));
     }
 

@@ -1,4 +1,4 @@
-package info.maccac.recorder;
+package info.maccac.recorder.model;
 
 public class TestResults {
 

@@ -1,4 +1,4 @@
-package info.maccac.recorder;
+package info.maccac.recorder.model;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class TestResult {
     private final Long duration;
     private final List<TestResult> children;
 
-    TestResult(String parentName, String name, Long duration, List<TestResult> children) {
+    public TestResult(String parentName, String name, Long duration, List<TestResult> children) {
         this.parentName = parentName;
         this.name = name;
         this.duration = duration;
