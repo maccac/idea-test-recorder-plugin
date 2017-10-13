@@ -1,7 +1,5 @@
 package info.maccac.recorder.client;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
@@ -11,25 +9,25 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
+import java.util.stream.Collectors;
 
 public class TestResultsClientImpl implements TestResultsClient {
 
     private static final Logger logger = Logger.getInstance("TestResultsClientImpl");
-    private static final String DEFAULT_HOST = "http://localhost:8080/results";
-
-    private Gson gson;
+    private static final String DEFAULT_HOST = "http://localhost:8086/write?db=mydb&precision=ms";
 
     public TestResultsClientImpl() {
-         this.gson = new GsonBuilder().create();
     }
 
     @Override
     public void postTestResults(TestResults breakdown) {
         try {
-            String jsonBody = gson.toJson(breakdown);
-            HttpURLConnection connection = postJson(jsonBody);
+            HttpURLConnection connection =  postResults(constructInfluxDbPost(breakdown));
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 logger.warn("Failed to send results to server.");
             }
@@ -41,19 +39,41 @@ public class TestResultsClientImpl implements TestResultsClient {
     }
 
     @NotNull
-    private HttpURLConnection postJson(String jsonBody) throws IOException {
+    private HttpURLConnection postResults(byte[] body) throws IOException {
         HttpURLConnection connection = createHttpUrlConnectionTo(DEFAULT_HOST);
         connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "application/json");
-        connection.setRequestProperty("charset", "utf-8");
-        byte[] jsonAsBytes = jsonBody.getBytes(StandardCharsets.UTF_8);
-        connection.setRequestProperty("Content-Length", Integer.toString(jsonAsBytes.length));
+        connection.setRequestProperty("Content-Length", Integer.toString(body.length));
 
         try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
-            out.write(jsonAsBytes);
+            out.write(body);
         }
 
         return connection;
+    }
+
+    @NotNull
+    private byte[] constructInfluxDbPost(final TestResults result) {
+        final String hostName = getHostName();
+        String body = result.getTestResult().getChildren().stream().map(y ->
+                String.format("testDuration,host=%s,project=%s,testName=%s value=%s %s",
+                        hostName,
+                        result.getProjectName(),
+                        y.getName(),
+                        y.getDuration(),
+                        Instant.now().toEpochMilli())
+        ).collect(Collectors.joining("\n"));
+        return body.getBytes(StandardCharsets.US_ASCII);
+    }
+
+    @NotNull
+    private String getHostName() {
+        String hostName;
+        try {
+            hostName = InetAddress.getLocalHost().getHostName();
+        } catch(UnknownHostException e) {
+            hostName = "Unknown";
+        }
+        return hostName;
     }
 
     @NotNull

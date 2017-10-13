@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class TestHost {
 
     public static void main(String[] args) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/results", new MyHandler());
+        HttpServer server = HttpServer.create(new InetSocketAddress(8086), 0);
+        server.createContext("/write", new MyHandler());
         server.start();
     }
 
