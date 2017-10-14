@@ -4,6 +4,7 @@ import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.diagnostic.Logger;
+import info.maccac.recorder.config.Preferences;
 import info.maccac.recorder.model.TestResults;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,9 +20,11 @@ import java.util.stream.Collectors;
 public class TestResultsClientImpl implements TestResultsClient {
 
     private static final Logger logger = Logger.getInstance("TestResultsClientImpl");
-    private static final String DEFAULT_HOST = "http://localhost:8086/write?db=mydb&precision=ms";
+    private static final String DEFAULT_HOST = "/write?db=mydb&precision=ms";
+    private Preferences preferences;
 
     public TestResultsClientImpl() {
+        this.preferences = new Preferences();
     }
 
     @Override
@@ -38,9 +41,14 @@ public class TestResultsClientImpl implements TestResultsClient {
         }
     }
 
+    @Override
+    public void testConnection() {
+
+    }
+
     @NotNull
     private HttpURLConnection postResults(byte[] body) throws IOException {
-        HttpURLConnection connection = createHttpUrlConnectionTo(DEFAULT_HOST);
+        HttpURLConnection connection = createHttpUrlConnectionTo(preferences.getServerURI() + DEFAULT_HOST);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Length", Integer.toString(body.length));
 

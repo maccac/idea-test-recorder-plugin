@@ -24,6 +24,6 @@
     <extensions defaultExtensionNs="com.intellij">
         <testStatusListener implementation="info.maccac.recorder.TestListener"/>
         <applicationService serviceInterface="info.maccac.recorder.client.TestResultsClient" serviceImplementation="info.maccac.recorder.client.TestResultsClientImpl" />
+        <applicationConfigurable groupId="tools" displayName="Test Recorder Plugin" id="preferences.TestRecorderConfigurable" instance="info.maccac.recorder.config.TestRecorderConfigurable" />
     </extensions>
-
 </idea-plugin>

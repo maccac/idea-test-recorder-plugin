@@ -4,4 +4,6 @@ import info.maccac.recorder.model.TestResults;
 
 public interface TestResultsClient {
     void postTestResults(TestResults breakdown);
+
+    void testConnection();
 }
