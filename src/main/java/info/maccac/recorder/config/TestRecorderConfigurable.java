@@ -11,12 +11,13 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 
 public class TestRecorderConfigurable implements SearchableConfigurable {
+
     private boolean isModified;
     private final TestRecorderPreferencesPanel preferencesPanel;
     private final Preferences preferences;
 
     public TestRecorderConfigurable() {
-        preferences = new Preferences();
+        preferences = ServiceManager.getService(Preferences.class);
         preferencesPanel =  new TestRecorderPreferencesPanel(this, preferences);
     }
 
@@ -50,9 +51,9 @@ public class TestRecorderConfigurable implements SearchableConfigurable {
     @Override
     public void apply() throws ConfigurationException {
         TestResultsClient service = ServiceManager.getService(TestResultsClient.class);
-        service.testConnection();
-
         preferences.setServerURI(preferencesPanel.getServerURL());
+        service.testConnection(preferencesPanel.getServerURL());
+
     }
 
     @Override
