@@ -2,7 +2,7 @@
     <id>info.mcaroly.plugin.testrecorder</id>
     <name>Test Recorder</name>
     <version>0.9.0</version>
-    <vendor email="support@yourcompany.com" url="https://github.com/maccac/idea-test-recorder-plugin">Maccac</vendor>
+    <vendor url="https://github.com/maccac/idea-test-recorder-plugin">Maccac</vendor>
 
     <description><![CDATA[
       Sends the results of tests runs to an influx services.<br />
