@@ -1,11 +1,14 @@
-<idea-plugin version="2">
+<idea-plugin>
     <id>info.mcaroly.plugin.testrecorder</id>
-    <name>Idea test recorder plugin</name>
-    <version>1.0</version>
+    <name>Test Recorder</name>
+    <version>0.9.0</version>
     <vendor email="support@yourcompany.com" url="https://github.com/maccac/idea-test-recorder-plugin">Maccac</vendor>
 
     <description><![CDATA[
-      Sends the results of tests runs to a remote service.<br>
+      Sends the results of tests runs to an influx services.<br />
+
+      You will need to manage your own influx services.<br/>
+      Searching docker hub for influxdb / grafana is always a good place to start.
     ]]></description>
 
     <change-notes><![CDATA[
