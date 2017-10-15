@@ -1,12 +1,12 @@
-package info.maccac.recorder;
+package com.maccac.recorder;
 
 import com.intellij.execution.testframework.AbstractTestProxy;
 import com.intellij.execution.testframework.TestStatusListener;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
-import info.maccac.recorder.client.TestResultsClient;
-import info.maccac.recorder.config.Preferences;
-import info.maccac.recorder.model.TestResultsConverter;
+import com.maccac.recorder.client.TestResultsClient;
+import com.maccac.recorder.config.Preferences;
+import com.maccac.recorder.model.TestResultsConverter;
 import org.jetbrains.annotations.Nullable;
 
 public class TestListener extends TestStatusListener {

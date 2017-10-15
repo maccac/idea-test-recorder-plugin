@@ -1,4 +1,4 @@
-package info.maccac.recorder.model;
+package com.maccac.recorder.model;
 
 import java.util.List;
 

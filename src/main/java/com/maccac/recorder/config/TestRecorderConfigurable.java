@@ -1,9 +1,9 @@
-package info.maccac.recorder.config;
+package com.maccac.recorder.config;
 
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
-import info.maccac.recorder.client.TestResultsClient;
+import com.maccac.recorder.client.TestResultsClient;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

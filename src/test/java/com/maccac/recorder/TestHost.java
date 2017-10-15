@@ -1,4 +1,4 @@
-package info.maccac.recorder;
+package com.maccac.recorder;
 
 import com.jcraft.jsch.Buffer;
 import com.sun.net.httpserver.HttpExchange;

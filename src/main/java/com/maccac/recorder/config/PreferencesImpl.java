@@ -1,4 +1,4 @@
-package info.maccac.recorder.config;
+package com.maccac.recorder.config;
 
 import com.intellij.ide.util.PropertiesComponent;
 

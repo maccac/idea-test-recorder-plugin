@@ -1,10 +1,10 @@
-package info.maccac.recorder.client;
+package com.maccac.recorder.client;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.diagnostic.Logger;
-import info.maccac.recorder.model.TestResults;
+import com.maccac.recorder.model.TestResults;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;

@@ -1,4 +1,4 @@
-package info.maccac.recorder.config;
+package com.maccac.recorder.config;
 
 import javax.swing.*;
 import java.awt.*;

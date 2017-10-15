@@ -1,4 +1,4 @@
-package info.maccac.recorder.config;
+package com.maccac.recorder.config;
 
 public interface Preferences {
     String getServerURI();

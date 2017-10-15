@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>info.mcaroly.plugin.testrecorder</id>
+    <id>com.maccac.plugin.testrecorder</id>
     <name>Test Recorder</name>
     <version>0.9.0</version>
     <vendor url="https://github.com/maccac/idea-test-recorder-plugin">Maccac</vendor>
@@ -25,9 +25,9 @@
 
     <!-- Add your extensions here -->
     <extensions defaultExtensionNs="com.intellij">
-        <testStatusListener implementation="info.maccac.recorder.TestListener"/>
-        <applicationService serviceInterface="info.maccac.recorder.client.TestResultsClient" serviceImplementation="info.maccac.recorder.client.TestResultsClientImpl" />
-        <applicationService serviceInterface="info.maccac.recorder.config.Preferences" serviceImplementation="info.maccac.recorder.config.PreferencesImpl" />
-        <applicationConfigurable groupId="tools" displayName="Test Recorder Plugin" id="preferences.TestRecorderConfigurable" instance="info.maccac.recorder.config.TestRecorderConfigurable" />
+        <testStatusListener implementation="com.maccac.recorder.TestListener"/>
+        <applicationService serviceInterface="com.maccac.recorder.client.TestResultsClient" serviceImplementation="com.maccac.recorder.client.TestResultsClientImpl" />
+        <applicationService serviceInterface="com.maccac.recorder.config.Preferences" serviceImplementation="com.maccac.recorder.config.PreferencesImpl" />
+        <applicationConfigurable groupId="tools" displayName="Test Recorder" id="preferences.TestRecorderConfigurable" instance="com.maccac.recorder.config.TestRecorderConfigurable" />
     </extensions>
 </idea-plugin>
